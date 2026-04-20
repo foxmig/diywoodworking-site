@@ -20,6 +20,11 @@
     <meta name="twitter:description" content="Discover top resources for hand tool woodworking projects.">
     <meta name="twitter:image" content="https://diywoodworking.net/images/og-hand-tool-woodworking.jpg">
     
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    
     <!-- Schema.org Article -->
     <script type="application/ld+json">
     {
@@ -51,588 +56,968 @@
             box-sizing: border-box;
         }
         
+        :root {
+            --primary: #1a1a2e;
+            --accent: #e94560;
+            --accent-hover: #d63d56;
+            --gold: #f4a261;
+            --cream: #faf8f5;
+            --text: #2d3436;
+            --text-light: #636e72;
+            --card-bg: #ffffff;
+            --shadow: 0 10px 40px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
         body {
-            font-family: 'Georgia', serif;
-            line-height: 1.8;
-            color: #333;
-            background: #f9f7f4;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--cream);
         }
         
         .container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 24px;
         }
         
-        header {
-            background: linear-gradient(135deg, #8B4513 0%, #654321 100%);
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%);
             color: white;
-            padding: 60px 20px;
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(233,69,96,0.15) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
             text-align: center;
-            margin-bottom: 40px;
         }
         
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .subtitle {
-            font-size: 1.2em;
-            opacity: 0.9;
-        }
-        
-        .intro {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
-        }
-        
-        .intro p {
-            font-size: 1.1em;
-            margin-bottom: 15px;
-        }
-        
-        .cta-box {
-            background: #e74c3c;
-            color: white;
-            padding: 25px;
-            border-radius: 10px;
-            text-align: center;
-            margin: 30px 0;
-        }
-        
-        .cta-box h3 {
-            margin-bottom: 15px;
-            font-size: 1.5em;
-        }
-        
-        .btn {
+        .hero-badge {
             display: inline-block;
-            background: #f39c12;
+            background: rgba(244,162,97,0.2);
+            color: var(--gold);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(244,162,97,0.3);
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, #f4a261 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--accent);
             color: white;
-            padding: 15px 40px;
+            padding: 18px 40px;
+            border-radius: 8px;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1.1em;
-            transition: background 0.3s;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(233,69,96,0.4);
         }
         
-        .btn:hover {
-            background: #e67e22;
+        .hero-cta:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(233,69,96,0.5);
         }
         
-        h2 {
-            color: #8B4513;
-            font-size: 1.8em;
-            margin: 40px 0 20px;
-            border-bottom: 3px solid #8B4513;
-            padding-bottom: 10px;
+        /* Intro Section */
+        .intro {
+            padding: 80px 0;
+            background: white;
         }
         
-        h3 {
-            color: #654321;
-            font-size: 1.4em;
-            margin: 30px 0 15px;
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .intro-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+        
+        .intro-text p {
+            margin-bottom: 20px;
+        }
+        
+        .intro-text strong {
+            color: var(--text);
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 40px;
+            border-radius: 16px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .highlight-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+        
+        .highlight-box p {
+            margin-bottom: 24px;
+            color: var(--text-light);
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(233,69,96,0.35);
+        }
+        
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+        
+        .section-header p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Companies Section */
+        .companies {
+            padding: 100px 0;
+            background: var(--cream);
         }
         
         .company-card {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 25px;
-            border-left: 5px solid #8B4513;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
         }
         
-        .company-card h3 {
-            margin-top: 0;
-            color: #8B4513;
+        .company-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--gold));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .company-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .company-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .company-header h3 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        .rank {
+            background: var(--accent);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
         }
         
         .rating {
-            color: #f39c12;
-            font-size: 1.2em;
-            margin-bottom: 10px;
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
         }
         
-        .pros-cons {
+        .company-card > p {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+        
+        .features-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
-            margin: 15px 0;
+            margin: 24px 0;
         }
         
-        .pros, .cons {
-            padding: 15px;
-            border-radius: 5px;
+        .feature-col {
+            padding: 20px;
+            border-radius: 12px;
         }
         
-        .pros {
-            background: #d5f4e6;
+        .feature-col.pros {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
         }
         
-        .cons {
-            background: #fadbd8;
+        .feature-col.cons {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
         }
         
-        .pros h4, .cons h4 {
-            margin-bottom: 10px;
+        .feature-col h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            font-weight: 700;
         }
         
-        .pros ul, .cons ul {
-            margin-left: 20px;
+        .feature-col.pros h4 {
+            color: #155724;
         }
         
-        .faq-section {
+        .feature-col.cons h4 {
+            color: #721c24;
+        }
+        
+        .feature-col ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .feature-col li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        
+        .feature-col.pros li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: 700;
+        }
+        
+        .feature-col.cons li::before {
+            content: '×';
+            position: absolute;
+            left: 0;
+            color: #dc3545;
+            font-weight: 700;
+        }
+        
+        .best-for {
+            background: #f8f9fa;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+        
+        .best-for strong {
+            color: var(--primary);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%);
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 16px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Guide Section */
+        .guide {
+            padding: 100px 0;
             background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-top: 40px;
+        }
+        
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .guide-card {
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .guide-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .guide-card h3 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .guide-card h3::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        
+        .guide-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            padding: 100px 0;
+            background: var(--cream);
         }
         
         .faq-item {
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid #eee;
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
         
-        .faq-item:last-child {
-            border-bottom: none;
+        .faq-item:hover {
+            box-shadow: var(--shadow-hover);
         }
         
         .faq-question {
-            font-weight: bold;
-            color: #8B4513;
-            font-size: 1.2em;
-            margin-bottom: 10px;
+            padding: 28px 32px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
         }
         
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 30px;
-            margin-top: 50px;
+        .faq-question:hover {
+            color: var(--accent);
         }
         
-        footer a {
-            color: #f39c12;
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--accent);
+            transition: transform 0.3s ease;
         }
         
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            padding: 0 32px 28px;
+            color: var(--text-light);
+            line-height: 1.8;
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        /* Disclaimer */
         .disclaimer {
             background: #fff3cd;
             border: 1px solid #ffeaa7;
-            padding: 20px;
-            border-radius: 5px;
-            margin: 30px 0;
-            font-size: 0.9em;
+            padding: 24px 32px;
+            border-radius: 12px;
+            margin: 60px 0;
+            font-size: 0.9rem;
+            color: #856404;
         }
         
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+        
+        footer p {
+            opacity: 0.7;
+            margin-bottom: 16px;
+        }
+        
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8em;
+            .intro-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
             
-            .pros-cons {
+            .features-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .company-header {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .hero {
+                padding: 60px 0 50px;
+            }
+            
+            .company-card {
+                padding: 28px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Hand Tool Woodworking Projects</h1>
-        <p class="subtitle">7 Best Resources for Traditional Woodworking Plans & Guides</p>
-    </header>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">2026 Updated Guide</div>
+                <h1>Hand Tool Woodworking Projects</h1>
+                <p class="hero-subtitle">Discover the 7 best resources for traditional woodworking. From beginner plans to master-level techniques.</p>
+                <a href="https://2ce4a4q3nj1v4kfqfc4ew7-jdb.hop.clickbank.net" class="hero-cta">Get 16,000+ Woodworking Plans</a>
+            </div>
+        </div>
+    </section>
     
-    <div class="container">
-        <div class="intro">
-            <p>There's something deeply satisfying about <strong>hand tool woodworking projects</strong>. The sound of a sharp plane slicing through grain, the precision of a chisel, the satisfaction of creating something beautiful with your own hands—without the noise and dust of power tools.</p>
-            
-            <p>Whether you're a beginner looking to start your journey into traditional woodworking or an experienced craftsperson seeking new challenges, finding quality resources is essential. This guide compares the top companies offering <strong>woodworking with hand tools</strong> plans, tutorials, and educational materials.</p>
-            
-            <p>We've researched and evaluated these resources based on plan quality, instructional value, variety of projects, and overall value for woodworkers at every skill level.</p>
-            
-            <div class="cta-box">
-                <h3>🎯 Our Top Pick for Hand Tool Woodworking Plans</h3>
-                <p>Get instant access to 16,000+ woodworking plans including hundreds of traditional hand tool projects</p>
-                <a href="https://2ce4a4q3nj1v4kfqfc4ew7-jdb.hop.clickbank.net" class="btn">View Plans Now</a>
-            </div>
-        </div>
-        
-        <h2>Top 7 Resources for Hand Tool Woodworking Projects</h2>
-        
-        <div class="company-card">
-            <h3>1. TedsWoodworking</h3>
-            <div class="rating">★★★★★ (4.8/5)</div>
-            <p>TedsWoodworking stands out as the most comprehensive resource for woodworkers of all levels. Their massive collection includes thousands of <strong>hand tool woodworking projects</strong> alongside power tool plans, making it easy to find traditional woodworking plans that match your preferences.</p>
-            
-            <div class="pros-cons">
-                <div class="pros">
-                    <h4>✓ Pros</h4>
-                    <ul>
-                        <li>16,000+ total plans</li>
-                        <li>Hundreds of hand tool specific projects</li>
-                        <li>Detailed step-by-step instructions</li>
-                        <li>Material lists and cutting diagrams</li>
-                        <li>One-time payment, lifetime access</li>
-                        <li>60-day money-back guarantee</li>
-                    </ul>
+    <section class="intro">
+        <div class="container">
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <p>There's something deeply satisfying about <strong>hand tool woodworking projects</strong>. The sound of a sharp plane slicing through grain, the precision of a chisel, the satisfaction of creating something beautiful with your own hands—without the noise and dust of power tools.</p>
+                    
+                    <p>Whether you're a beginner looking to start your journey into traditional woodworking or an experienced craftsperson seeking new challenges, finding quality resources is essential.</p>
+                    
+                    <p>We've researched and evaluated these resources based on plan quality, instructional value, variety of projects, and overall value for woodworkers at every skill level.</p>
                 </div>
-                <div class="cons">
-                    <h4>✗ Cons</h4>
-                    <ul>
-                        <li>Can be overwhelming for beginners</li>
-                        <li>Some plans require power tools</li>
-                        <li>Digital format only</li>
-                    </ul>
+                <div class="highlight-box">
+                    <h3>🏆 Our #1 Recommendation</h3>
+                    <p>Get instant access to 16,000+ woodworking plans including hundreds of traditional hand tool projects with detailed step-by-step instructions.</p>
+                    <a href="https://2ce4a4q3nj1v4kfqfc4ew7-jdb.hop.clickbank.net" class="btn-primary">View Plans Now →</a>
                 </div>
             </div>
-            
-            <p><strong>Best for:</strong> Woodworkers who want variety and comprehensive instructions for both hand and power tool projects.</p>
-            
-            <a href="https://2ce4a4q3nj1v4kfqfc4ew7-jdb.hop.clickbank.net" class="btn">Check Out TedsWoodworking</a>
         </div>
-        
-        <div class="company-card">
-            <h3>2. Woodworkers Guild of America</h3>
-            <div class="rating">★★★★☆ (4.5/5)</div>
-            <p>The Woodworkers Guild of America offers premium video-based instruction with a strong focus on traditional techniques. Their hand tool mastery classes are particularly well-regarded in the woodworking community.</p>
-            
-            <div class="pros-cons">
-                <div class="pros">
-                    <h4>✓ Pros</h4>
-                    <ul>
-                        <li>High-quality video instruction</li>
-                        <li>Expert instructors</li>
-                        <li>Strong traditional woodworking focus</li>
-                        <li>Active community forum</li>
-                        <li>Regular new content</li>
-                    </ul>
-                </div>
-                <div class="cons">
-                    <h4>✗ Cons</h4>
-                    <ul>
-                        <li>Subscription-based pricing</li>
-                        <li>Limited downloadable plans</li>
-                        <li>Requires internet for videos</li>
-                    </ul>
-                </div>
+    </section>
+    
+    <section class="companies">
+        <div class="container">
+            <div class="section-header">
+                <h2>Top 7 Hand Tool Woodworking Resources</h2>
+                <p>Comprehensive reviews of the best companies offering plans, tutorials, and guides for traditional woodworking</p>
             </div>
             
-            <p><strong>Best for:</strong> Visual learners who prefer video instruction and want to master traditional hand tool techniques.</p>
-        </div>
-        
-        <div class="company-card">
-            <h3>3. Popular Woodworking Magazine</h3>
-            <div class="rating">★★★★☆ (4.3/5)</div>
-            <p>A trusted name in woodworking for decades, Popular Woodworking offers both print and digital subscriptions with regular features on <strong>hand tool woodworking projects</strong>. Their archive contains hundreds of traditional woodworking articles.</p>
-            
-            <div class="pros-cons">
-                <div class="pros">
-                    <h4>✓ Pros</h4>
-                    <ul>
-                        <li>Established, trusted brand</li>
-                        <li>Quality project plans</li>
-                        <li>Tool reviews and recommendations</li>
-                        <li>Technique articles</li>
-                        <li>Both print and digital options</li>
-                    </ul>
+            <div class="company-card">
+                <div class="company-header">
+                    <h3>TedsWoodworking</h3>
+                    <div class="rank">1</div>
                 </div>
-                <div class="cons">
-                    <h4>✗ Cons</h4>
-                    <ul>
-                        <li>Subscription required for full access</li>
-                        <li>Monthly publication schedule</li>
-                        <li>Limited hand tool specific content</li>
-                    </ul>
+                <div class="rating">★★★★★</div>
+                <p>TedsWoodworking stands out as the most comprehensive resource for woodworkers of all levels. Their massive collection includes thousands of <strong>hand tool woodworking projects</strong> alongside power tool plans, making it easy to find traditional woodworking plans that match your preferences.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-col pros">
+                        <h4>What We Love</h4>
+                        <ul>
+                            <li>16,000+ total plans</li>
+                            <li>Hundreds of hand tool specific projects</li>
+                            <li>Detailed step-by-step instructions</li>
+                            <li>Material lists and cutting diagrams</li>
+                            <li>One-time payment, lifetime access</li>
+                            <li>60-day money-back guarantee</li>
+                        </ul>
+                    </div>
+                    <div class="feature-col cons">
+                        <h4>Considerations</h4>
+                        <ul>
+                            <li>Can be overwhelming for beginners</li>
+                            <li>Some plans require power tools</li>
+                            <li>Digital format only</li>
+                        </ul>
+                    </div>
                 </div>
+                
+                <div class="best-for"><strong>Best for:</strong> Woodworkers who want variety and comprehensive instructions for both hand and power tool projects.</div>
+                
+                <a href="https://2ce4a4q3nj1v4kfqfc4ew7-jdb.hop.clickbank.net" class="btn-primary">Check Out TedsWoodworking →</a>
             </div>
             
-            <p><strong>Best for:</strong> Woodworkers who enjoy regular inspiration and staying current with woodworking trends.</p>
-        </div>
-        
-        <div class="company-card">
-            <h3>4. Lost Art Press</h3>
-            <div class="rating">★★★★★ (4.9/5)</div>
-            <p>Lost Art Press is the gold standard for traditional woodworking books. Their publications focus exclusively on hand tools and traditional methods, making them a must-have resource for serious hand tool enthusiasts.</p>
-            
-            <div class="pros-cons">
-                <div class="pros">
-                    <h4>✓ Pros</h4>
-                    <ul>
-                        <li>Exceptional book quality</li>
-                        <li>100% hand tool focused</li>
-                        <li>Beautiful illustrations</li>
-                        <li>Historical accuracy</li>
-                        <li>Physical books available</li>
-                    </ul>
+            <div class="company-card">
+                <div class="company-header">
+                    <h3>Woodworkers Guild of America</h3>
+                    <div class="rank">2</div>
                 </div>
-                <div class="cons">
-                    <h4>✗ Cons</h4>
-                    <ul>
-                        <li>Higher price point per book</li>
-                        <li>No video content</li>
-                        <li>Smaller project selection</li>
-                    </ul>
+                <div class="rating">★★★★☆</div>
+                <p>The Woodworkers Guild of America offers premium video-based instruction with a strong focus on traditional techniques. Their hand tool mastery classes are particularly well-regarded in the woodworking community.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-col pros">
+                        <h4>What We Love</h4>
+                        <ul>
+                            <li>High-quality video instruction</li>
+                            <li>Expert instructors</li>
+                            <li>Strong traditional woodworking focus</li>
+                            <li>Active community forum</li>
+                            <li>Regular new content</li>
+                        </ul>
+                    </div>
+                    <div class="feature-col cons">
+                        <h4>Considerations</h4>
+                        <ul>
+                            <li>Subscription-based pricing</li>
+                            <li>Limited downloadable plans</li>
+                            <li>Requires internet for videos</li>
+                        </ul>
+                    </div>
                 </div>
+                
+                <div class="best-for"><strong>Best for:</strong> Visual learners who prefer video instruction and want to master traditional hand tool techniques.</div>
             </div>
             
-            <p><strong>Best for:</strong> Traditional woodworking purists who value craftsmanship and historical accuracy.</p>
-        </div>
-        
-        <div class="cta-box">
-            <h3>🏆 Want Access to Thousands of Plans?</h3>
-            <p>Get 16,000+ woodworking plans including hand tool projects, furniture, outdoor projects, and more</p>
-            <a href="https://2ce4a4q3nj1v4kfqfc4ew7-jdb.hop.clickbank.net" class="btn">Get Instant Access</a>
-        </div>
-        
-        <div class="company-card">
-            <h3>5. Paul Sellers</h3>
-            <div class="rating">★★★★★ (4.8/5)</div>
-            <p>Paul Sellers is a master woodworker who has dedicated his career to teaching hand tool woodworking. His website and YouTube channel offer extensive free content, with premium courses available for those wanting structured learning.</p>
-            
-            <div class="pros-cons">
-                <div class="pros">
-                    <h4>✓ Pros</h4>
-                    <ul>
-                        <li>Extensive free content</li>
-                        <li>Master-level instruction</li>
-                        <li>100% hand tool focused</li>
-                        <li>Clear, detailed explanations</li>
-                        <li>Active YouTube presence</li>
-                    </ul>
+            <div class="company-card">
+                <div class="company-header">
+                    <h3>Popular Woodworking Magazine</h3>
+                    <div class="rank">3</div>
                 </div>
-                <div class="cons">
-                    <h4>✗ Cons</h4>
-                    <ul>
-                        <li>Limited formal project plans</li>
-                        <li>Premium courses can be pricey</li>
-                        <li>Less variety than plan collections</li>
-                    </ul>
+                <div class="rating">★★★★☆</div>
+                <p>A trusted name in woodworking for decades, Popular Woodworking offers both print and digital subscriptions with regular features on <strong>hand tool woodworking projects</strong>. Their archive contains hundreds of traditional woodworking articles.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-col pros">
+                        <h4>What We Love</h4>
+                        <ul>
+                            <li>Established, trusted brand</li>
+                            <li>Quality project plans</li>
+                            <li>Tool reviews and recommendations</li>
+                            <li>Technique articles</li>
+                            <li>Both print and digital options</li>
+                        </ul>
+                    </div>
+                    <div class="feature-col cons">
+                        <h4>Considerations</h4>
+                        <ul>
+                            <li>Subscription required for full access</li>
+                            <li>Monthly publication schedule</li>
+                            <li>Limited hand tool specific content</li>
+                        </ul>
+                    </div>
                 </div>
+                
+                <div class="best-for"><strong>Best for:</strong> Woodworkers who enjoy regular inspiration and staying current with woodworking trends.</div>
             </div>
             
-            <p><strong>Best for:</strong> Learners who want to understand the "why" behind techniques, not just the "how."</p>
-        </div>
-        
-        <div class="company-card">
-            <h3>6. Fine Woodworking</h3>
-            <div class="rating">★★★★☆ (4.4/5)</div>
-            <p>Fine Woodworking is the premium publication for serious woodworkers. While they cover both hand and power tools, their hand tool content is exceptional and often features master craftsmen sharing their expertise.</p>
-            
-            <div class="pros-cons">
-                <div class="pros">
-                    <h4>✓ Pros</h4>
-                    <ul>
-                        <li>High-end project plans</li>
-                        <li>Expert contributors</li>
-                        <li>Beautiful photography</li>
-                        <li>Extensive technique library</li>
-                        <li>Video workshop available</li>
-                    </ul>
+            <div class="company-card">
+                <div class="company-header">
+                    <h3>Lost Art Press</h3>
+                    <div class="rank">4</div>
                 </div>
-                <div class="cons">
-                    <h4>✗ Cons</h4>
-                    <ul>
-                        <li>Premium pricing</li>
-                        <li>More power tool content</li>
-                        <li>Can be intimidating for beginners</li>
-                    </ul>
+                <div class="rating">★★★★★</div>
+                <p>Lost Art Press is the gold standard for traditional woodworking books. Their publications focus exclusively on hand tools and traditional methods, making them a must-have resource for serious hand tool enthusiasts.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-col pros">
+                        <h4>What We Love</h4>
+                        <ul>
+                            <li>Exceptional book quality</li>
+                            <li>100% hand tool focused</li>
+                            <li>Beautiful illustrations</li>
+                            <li>Historical accuracy</li>
+                            <li>Physical books available</li>
+                        </ul>
+                    </div>
+                    <div class="feature-col cons">
+                        <h4>Considerations</h4>
+                        <ul>
+                            <li>Higher price point per book</li>
+                            <li>No video content</li>
+                            <li>Smaller project selection</li>
+                        </ul>
+                    </div>
                 </div>
+                
+                <div class="best-for"><strong>Best for:</strong> Traditional woodworking purists who value craftsmanship and historical accuracy.</div>
             </div>
             
-            <p><strong>Best for:</strong> Serious woodworkers looking for challenging, high-quality projects.</p>
-        </div>
-        
-        <div class="company-card">
-            <h3>7. Woodsmith Plans</h3>
-            <div class="rating">★★★★☆ (4.2/5)</div>
-            <p>Woodsmith offers well-designed plans with excellent instructions. While not exclusively hand tool focused, many of their projects can be completed with hand tools and they provide clear guidance for both approaches.</p>
-            
-            <div class="pros-cons">
-                <div class="pros">
-                    <h4>✓ Pros</h4>
-                    <ul>
-                        <li>Clear, detailed plans</li>
-                        <li>Good value pricing</li>
-                        <li>Regular new releases</li>
-                        <li>Shop tips and techniques</li>
-                        <li>Print and digital options</li>
-                    </ul>
-                </div>
-                <div class="cons">
-                    <h4>✗ Cons</h4>
-                    <ul>
-                        <li>Not hand tool specific</li>
-                        <li>Plans sold individually</li>
-                        <li>Limited traditional technique content</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <p><strong>Best for:</strong> Woodworkers who want well-designed furniture plans that work with any tool approach.</p>
-        </div>
-        
-        <h2>How to Choose the Right Resource for Your Hand Tool Woodworking Projects</h2>
-        
-        <p>When selecting a resource for <strong>woodworking with hand tools</strong>, consider these factors:</p>
-        
-        <h3>Skill Level</h3>
-        <p>Beginners should look for resources with clear instructions and foundational technique coverage. Intermediate and advanced woodworkers may prefer more challenging projects and specialized techniques.</p>
-        
-        <h3>Learning Style</h3>
-        <p>Do you prefer reading detailed instructions, watching video demonstrations, or following illustrated diagrams? Choose resources that match how you learn best.</p>
-        
-        <h3>Project Variety</h3>
-        <p>Some resources specialize in furniture, others in smaller projects or specific techniques. Consider what types of <strong>hand tool woodworking projects</strong> interest you most.</p>
-        
-        <h3>Budget</h3>
-        <p>Options range from free YouTube content to premium book collections and subscription services. Determine your budget and choose accordingly.</p>
-        
-        <h3>Traditional vs. Hybrid Approach</h3>
-        <p>Purists may prefer resources focused exclusively on hand tools, while others might want the flexibility of hybrid approaches that combine hand and power tools.</p>
-        
-        <div class="cta-box">
-            <h3>🚀 Ready to Start Your First Hand Tool Project?</h3>
-            <p>Get instant access to thousands of plans with detailed instructions for traditional woodworking</p>
-            <a href="https://2ce4a4q3nj1v4kfqfc4ew7-jdb.hop.clickbank.net" class="btn">Start Building Today</a>
-        </div>
-        
-        <h2>Getting Started with Hand Tool Woodworking</h2>
-        
-        <p>If you're new to <strong>hand tool woodworking projects</strong>, here are some tips to get started:</p>
-        
-        <h3>Start with Sharp Tools</h3>
-        <p>Sharp tools are safer and more effective than dull ones. Invest time in learning to sharpen your chisels, planes, and saws properly.</p>
-        
-        <h3>Choose the Right Wood</h3>
-        <p>Softwoods like pine are easier to work with hand tools when learning. As you gain experience, move to hardwoods like oak, maple, and walnut.</p>
-        
-        <h3>Practice Basic Techniques</h3>
-        <p>Before tackling complex projects, practice basic cuts, joints, and finishing techniques on scrap wood.</p>
-        
-        <h3>Start Small</h3>
-        <p>Begin with smaller projects like a cutting board, simple box, or picture frame before attempting furniture.</p>
-        
-        <h3>Be Patient</h3>
-        <p>Hand tool woodworking requires patience and precision. Embrace the slower pace as part of the enjoyment.</p>
-        
-        <div class="disclaimer">
-            <p><strong>Disclaimer:</strong> This page contains affiliate links. We may receive a commission if you purchase through these links at no additional cost to you. The information provided is for educational purposes only. We have not personally used all products listed and make no guarantees about results. Please do your own research before making any purchase.</p>
-        </div>
-        
-        <div class="faq-section">
-            <h2>Frequently Asked Questions About Hand Tool Woodworking Projects</h2>
-            
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <div class="faq-question" itemprop="name">What are the essential hand tools for woodworking beginners?</div>
-                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">
-                        <p>The essential hand tools for beginners include: a set of chisels (1/4", 1/2", 3/4", 1"), a hand plane (a #4 smoothing plane is versatile), a backsaw or dovetail saw, a coping saw, a marking gauge, a combination square, a marking knife, and a mallet. These tools will allow you to complete most beginner to intermediate <strong>hand tool woodworking projects</strong>.</p>
+            <div class="cta-section">
+                <div class="container">
+                    <div class="cta-content">
+                        <h2>Ready to Start Building?</h2>
+                        <p>Get instant access to thousands of plans and start your first hand tool project today</p>
+                        <a href="https://2ce4a4q3nj1v4kfqfc4ew7-jdb.hop.clickbank.net" class="hero-cta">Get 16,000+ Plans Now →</a>
                     </div>
                 </div>
             </div>
             
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <div class="faq-question" itemprop="name">Is hand tool woodworking cheaper than using power tools?</div>
-                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">
-                        <p>Initially, hand tools can be more affordable since you don't need expensive machinery. However, quality hand tools can be costly, and building a complete toolkit adds up. The real savings come from not needing a dedicated workshop space, dust collection systems, or expensive safety equipment. Many woodworkers find <strong>woodworking with hand tools</strong> to be more cost-effective overall.</p>
+            <div class="company-card">
+                <div class="company-header">
+                    <h3>Paul Sellers</h3>
+                    <div class="rank">5</div>
+                </div>
+                <div class="rating">★★★★★</div>
+                <p>Paul Sellers is a master woodworker who has dedicated his career to teaching hand tool woodworking. His website and YouTube channel offer extensive free content, with premium courses available for those wanting structured learning.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-col pros">
+                        <h4>What We Love</h4>
+                        <ul>
+                            <li>Extensive free content</li>
+                            <li>Master-level instruction</li>
+                            <li>100% hand tool focused</li>
+                            <li>Clear, detailed explanations</li>
+                            <li>Active YouTube presence</li>
+                        </ul>
                     </div>
+                    <div class="feature-col cons">
+                        <h4>Considerations</h4>
+                        <ul>
+                            <li>Limited formal project plans</li>
+                            <li>Premium courses can be pricey</li>
+                            <li>Less variety than plan collections</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="best-for"><strong>Best for:</strong> Learners who want to understand the "why" behind techniques, not just the "how."</div>
+            </div>
+            
+            <div class="company-card">
+                <div class="company-header">
+                    <h3>Fine Woodworking</h3>
+                    <div class="rank">6</div>
+                </div>
+                <div class="rating">★★★★☆</div>
+                <p>Fine Woodworking is the premium publication for serious woodworkers. While they cover both hand and power tools, their hand tool content is exceptional and often features master craftsmen sharing their expertise.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-col pros">
+                        <h4>What We Love</h4>
+                        <ul>
+                            <li>High-end project plans</li>
+                            <li>Expert contributors</li>
+                            <li>Beautiful photography</li>
+                            <li>Extensive technique library</li>
+                            <li>Video workshop available</li>
+                        </ul>
+                    </div>
+                    <div class="feature-col cons">
+                        <h4>Considerations</h4>
+                        <ul>
+                            <li>Premium pricing</li>
+                            <li>More power tool content</li>
+                            <li>Can be intimidating for beginners</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="best-for"><strong>Best for:</strong> Serious woodworkers looking for challenging, high-quality projects.</div>
+            </div>
+            
+            <div class="company-card">
+                <div class="company-header">
+                    <h3>Woodsmith Plans</h3>
+                    <div class="rank">7</div>
+                </div>
+                <div class="rating">★★★★☆</div>
+                <p>Woodsmith offers well-designed plans with excellent instructions. While not exclusively hand tool focused, many of their projects can be completed with hand tools and they provide clear guidance for both approaches.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-col pros">
+                        <h4>What We Love</h4>
+                        <ul>
+                            <li>Clear, detailed plans</li>
+                            <li>Good value pricing</li>
+                            <li>Regular new releases</li>
+                            <li>Shop tips and techniques</li>
+                            <li>Print and digital options</li>
+                        </ul>
+                    </div>
+                    <div class="feature-col cons">
+                        <h4>Considerations</h4>
+                        <ul>
+                            <li>Not hand tool specific</li>
+                            <li>Plans sold individually</li>
+                            <li>Limited traditional technique content</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="best-for"><strong>Best for:</strong> Woodworkers who want well-designed furniture plans that work with any tool approach.</div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="guide">
+        <div class="container">
+            <div class="section-header">
+                <h2>How to Choose the Right Resource</h2>
+                <p>Consider these factors when selecting the best hand tool woodworking resource for your needs</p>
+            </div>
+            
+            <div class="guide-grid">
+                <div class="guide-card">
+                    <h3>Skill Level</h3>
+                    <p>Beginners should look for resources with clear instructions and foundational technique coverage. Intermediate and advanced woodworkers may prefer more challenging projects.</p>
+                </div>
+                <div class="guide-card">
+                    <h3>Learning Style</h3>
+                    <p>Do you prefer reading detailed instructions, watching video demonstrations, or following illustrated diagrams? Choose resources that match how you learn best.</p>
+                </div>
+                <div class="guide-card">
+                    <h3>Project Variety</h3>
+                    <p>Some resources specialize in furniture, others in smaller projects or specific techniques. Consider what types of hand tool woodworking projects interest you most.</p>
+                </div>
+                <div class="guide-card">
+                    <h3>Budget</h3>
+                    <p>Options range from free YouTube content to premium book collections and subscription services. Determine your budget and choose accordingly.</p>
+                </div>
+                <div class="guide-card">
+                    <h3>Traditional vs. Hybrid</h3>
+                    <p>Purists may prefer resources focused exclusively on hand tools, while others might want the flexibility of hybrid approaches that combine hand and power tools.</p>
+                </div>
+                <div class="guide-card">
+                    <h3>Getting Started Tips</h3>
+                    <p>Start with sharp tools, choose the right wood, practice basic techniques on scrap wood, start small, and be patient with the process.</p>
                 </div>
             </div>
             
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <div class="faq-question" itemprop="name">How long does it take to complete a hand tool woodworking project?</div>
-                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">
-                        <p>Hand tool woodworking typically takes longer than power tool work, but the timeline varies greatly by project complexity. A simple cutting board might take a few hours, while a complex piece of furniture could take weeks or months. Many woodworkers view the slower pace as a benefit—it forces mindfulness and produces higher-quality results.</p>
-                    </div>
+            <div class="disclaimer">
+                <p><strong>Disclaimer:</strong> This page contains affiliate links. We may receive a commission if you purchase through these links at no additional cost to you. The information provided is for educational purposes only. We have not personally used all products listed and make no guarantees about results. Please do your own research before making any purchase.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Common questions about hand tool woodworking projects and getting started</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What are the essential hand tools for woodworking beginners?</div>
+                <div class="faq-answer">
+                    <p>The essential hand tools for beginners include: a set of chisels (1/4", 1/2", 3/4", 1"), a hand plane (a #4 smoothing plane is versatile), a backsaw or dovetail saw, a coping saw, a marking gauge, a combination square, a marking knife, and a mallet. These tools will allow you to complete most beginner to intermediate hand tool woodworking projects.</p>
                 </div>
             </div>
             
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <div class="faq-question" itemprop="name">Can I build furniture using only hand tools?</div>
-                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">
-                        <p>Absolutely! Furniture has been built with hand tools for centuries. While it requires more time and skill, many woodworkers prefer the results. Traditional joinery techniques like dovetails, mortise and tenon, and dowel joints can all be done by hand. Many <strong>hand tool woodworking projects</strong> specifically focus on furniture building.</p>
-                    </div>
+            <div class="faq-item">
+                <div class="faq-question">Is hand tool woodworking cheaper than using power tools?</div>
+                <div class="faq-answer">
+                    <p>Initially, hand tools can be more affordable since you don't need expensive machinery. However, quality hand tools can be costly, and building a complete toolkit adds up. The real savings come from not needing a dedicated workshop space, dust collection systems, or expensive safety equipment. Many woodworkers find woodworking with hand tools to be more cost-effective overall.</p>
                 </div>
             </div>
             
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <div class="faq-question" itemprop="name">What is the best wood for hand tool woodworking?</div>
-                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">
-                        <p>For beginners, softwoods like pine, cedar, and fir are easier to work with hand tools. As you gain experience, hardwoods like cherry, walnut, maple, and oak offer beautiful results. The key is choosing properly dried wood—too wet and it will warp; too dry and it becomes brittle. Many woodworkers prefer quarter-sawn lumber for stability.</p>
-                    </div>
+            <div class="faq-item">
+                <div class="faq-question">How long does it take to complete a hand tool woodworking project?</div>
+                <div class="faq-answer">
+                    <p>Hand tool woodworking typically takes longer than power tool work, but the timeline varies greatly by project complexity. A simple cutting board might take a few hours, while a complex piece of furniture could take weeks or months. Many woodworkers view the slower pace as a benefit—it forces mindfulness and produces higher-quality results.</p>
                 </div>
             </div>
             
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <div class="faq-question" itemprop="name">Do I need a workshop for hand tool woodworking?</div>
-                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">
-                        <p>One of the advantages of <strong>woodworking with hand tools</strong> is that you need minimal space. A sturdy workbench, good lighting, and basic storage are sufficient. Many hand tool woodworkers work in apartments, garages, or even outdoors. You don't need dust collection systems or extensive electrical setup required for power tools.</p>
-                    </div>
+            <div class="faq-item">
+                <div class="faq-question">Can I build furniture using only hand tools?</div>
+                <div class="faq-answer">
+                    <p>Absolutely! Furniture has been built with hand tools for centuries. While it requires more time and skill, many woodworkers prefer the results. Traditional joinery techniques like dovetails, mortise and tenon, and dowel joints can all be done by hand. Many hand tool woodworking projects specifically focus on furniture building.</p>
                 </div>
             </div>
             
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <div class="faq-question" itemprop="name">How do I learn hand tool woodworking techniques?</div>
-                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">
-                        <p>The best ways to learn include: watching instructional videos from masters like Paul Sellers, reading books from Lost Art Press, taking local classes or workshops, practicing on scrap wood, and starting with simple projects. Many woodworkers also find value in online plan collections that include detailed instructions for <strong>hand tool woodworking projects</strong>.</p>
-                    </div>
+            <div class="faq-item">
+                <div class="faq-question">What is the best wood for hand tool woodworking?</div>
+                <div class="faq-answer">
+                    <p>For beginners, softwoods like pine, cedar, and fir are easier to work with hand tools. As you gain experience, hardwoods like cherry, walnut, maple, and oak offer beautiful results. The key is choosing properly dried wood—too wet and it will warp; too dry and it becomes brittle. Many woodworkers prefer quarter-sawn lumber for stability.</p>
                 </div>
             </div>
             
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <div class="faq-question" itemprop="name">Are hand tools safer than power tools?</div>
-                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">
-                        <p>Hand tools are generally safer because they remove the risk of kickback, blade contact at high speeds, and other power tool hazards. However, they still require respect and proper technique. Sharp tools are actually safer than dull ones, and learning proper body mechanics helps prevent repetitive strain injuries.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <div class="faq-question" itemprop="name">What are some good beginner hand tool woodworking projects?</div>
-                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">
-                        <p>Great beginner projects include: a simple cutting board, a wooden mallet (which you'll use for other projects), a basic bookshelf, a picture frame, a small box with a lid, a coat rack, or a simple stool. These projects teach fundamental skills like planing, sawing, and joinery while producing useful items.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <div class="faq-question" itemprop="name">Where can I find quality woodworking plans for hand tools?</div>
-                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">
-                        <p>Quality plans can be found through various resources including comprehensive plan collections like <a href="https://2ce4a4q3nj1v4kfqfc4ew7-jdb.hop.clickbank.net">TedsWoodworking</a>, books from Lost Art Press, magazines like Popular Woodworking and Fine Woodworking, and online communities. Look for plans that include detailed instructions, material lists, cutting diagrams, and clear illustrations or photos.</p>
-                    </div>
+            <div class="faq-item">
+                <div class="faq-question">Where can I find quality woodworking plans for hand tools?</div>
+                <div class="faq-answer">
+                    <p>Quality plans can be found through various resources including comprehensive plan collections like <a href="https://2ce4a4q3nj1v4kfqfc4ew7-jdb.hop.clickbank.net">TedsWoodworking</a>, books from Lost Art Press, magazines like Popular Woodworking and Fine Woodworking, and online communities. Look for plans that include detailed instructions, material lists, cutting diagrams, and clear illustrations or photos.</p>
                 </div>
             </div>
         </div>
-        
-        <div class="cta-box" style="margin-top: 40px;">
-            <h3>🎯 Start Building Your Hand Tool Woodworking Skills Today</h3>
-            <p>Get access to 16,000+ plans including hundreds of traditional hand tool projects</p>
-            <a href="https://2ce4a4q3nj1v4kfqfc4ew7-jdb.hop.clickbank.net" class="btn">Get Instant Access Now</a>
+    </section>
+    
+    <div class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Start Your Hand Tool Woodworking Journey</h2>
+                <p>Get access to 16,000+ plans and join thousands of woodworkers building beautiful projects</p>
+                <a href="https://2ce4a4q3nj1v4kfqfc4ew7-jdb.hop.clickbank.net" class="hero-cta">Get Instant Access →</a>
+            </div>
         </div>
     </div>
     
     <footer>
-        <p>&copy; 2026 DIY Woodworking. All rights reserved.</p>
-        <p>This site contains affiliate links. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        <div class="container">
+            <p>&copy; 2026 DIY Woodworking. All rights reserved.</p>
+            <p>This site contains affiliate links. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
     </footer>
+    
+    <script>
+        // Simple FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
     
     <!-- FAQ Schema -->
     <script type="application/ld+json">
@@ -678,38 +1063,6 @@
                 "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "For beginners, softwoods like pine, cedar, and fir are easier to work with hand tools. As you gain experience, hardwoods like cherry, walnut, maple, and oak offer beautiful results. The key is choosing properly dried wood—too wet and it will warp; too dry and it becomes brittle. Many woodworkers prefer quarter-sawn lumber for stability."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Do I need a workshop for hand tool woodworking?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "One of the advantages of woodworking with hand tools is that you need minimal space. A sturdy workbench, good lighting, and basic storage are sufficient. Many hand tool woodworkers work in apartments, garages, or even outdoors. You don't need dust collection systems or extensive electrical setup required for power tools."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "How do I learn hand tool woodworking techniques?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "The best ways to learn include: watching instructional videos from masters like Paul Sellers, reading books from Lost Art Press, taking local classes or workshops, practicing on scrap wood, and starting with simple projects. Many woodworkers also find value in online plan collections that include detailed instructions for hand tool woodworking projects."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Are hand tools safer than power tools?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Hand tools are generally safer because they remove the risk of kickback, blade contact at high speeds, and other power tool hazards. However, they still require respect and proper technique. Sharp tools are actually safer than dull ones, and learning proper body mechanics helps prevent repetitive strain injuries."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What are some good beginner hand tool woodworking projects?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Great beginner projects include: a simple cutting board, a wooden mallet (which you'll use for other projects), a basic bookshelf, a picture frame, a small box with a lid, a coat rack, or a simple stool. These projects teach fundamental skills like planing, sawing, and joinery while producing useful items."
                 }
             },
             {
